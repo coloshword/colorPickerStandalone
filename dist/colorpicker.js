@@ -4,6 +4,14 @@ function colorPicker() {
     // implement
     $(".dropDownMenu").css("visibility", "visible");
 }
+function updateSliderVal(inputID, thumbXVal, thumbLeftBound, thumbRightBound) {
+    let amountFilled = thumbXVal - thumbLeftBound; // set by coordinate of the slider 
+    let fullAmount = thumbRightBound - thumbLeftBound;
+    // RGB val = 255 * amtFIlled / full amount 
+    let RGBVal = Math.round((255 * amountFilled) / fullAmount);
+    $("#" + inputID).val(RGBVal);
+    console.log(RGBVal);
+}
 var redThumb = document.getElementById("text");
 redThumb.onmousedown = function (event) {
     // Slider range constraints 
@@ -13,7 +21,6 @@ redThumb.onmousedown = function (event) {
     let thumbRightBound = thumbLeftBound + 180; // the right bound is the left bound plus size of slider
     // shifting of the thumb
     let shiftX = event.clientX - redThumb.getBoundingClientRect().left;
-    console.log(sliderY);
     redThumb.style.position = 'absolute';
     redThumb.style.zIndex = 1000;
     // move it from any existing parents directly to the body
@@ -31,6 +38,7 @@ redThumb.onmousedown = function (event) {
         }
         redThumb.style.left = pageX - shiftX + 'px';
         redThumb.style.top = yCor + 'px';
+        updateSliderVal("red_value", pageX, thumbLeftBound, thumbRightBound); // update the pcolor value 
     }
     function onMouseMove(event) {
         moveAt(event.pageX, sliderY);

@@ -16,6 +16,11 @@
     cursor: pointer;
 }
 
+.sliderBox {
+    padding-right: 30px;
+    padding-top: 10px;
+}
+
 .sliderTrack {
     background-color: white;
     width: 200px;
@@ -35,6 +40,18 @@
     border:solid black;
     padding: 30px;
     visibility: hidden;
+}
+
+.inputBox {
+    width: 50px;
+    height:60px;
+    padding-top: 6px;
+    display: flex;
+}
+
+.rgbInput {
+    width: 35px;
+    height: 20px;
 }
 
 body {
