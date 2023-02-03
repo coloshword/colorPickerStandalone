@@ -52,6 +52,7 @@
 .rgbInput {
     width: 35px;
     height: 20px;
+    align-content: center;
 }
 
 body {

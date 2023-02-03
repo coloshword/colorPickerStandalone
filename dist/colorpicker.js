@@ -54,3 +54,6 @@ redThumb.onmousedown = function (event) {
 redThumb.ondragstart = function () {
     return false;
 };
+redThumb.onselectstart = function () {
+    return false;
+};
