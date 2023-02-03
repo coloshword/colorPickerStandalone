@@ -10,8 +10,33 @@ function updateSliderVal(inputID:string, thumbXVal:number, thumbLeftBound:number
     // RGB val = 255 * amtFIlled / full amount 
     let RGBVal = Math.round((255 * amountFilled) / fullAmount);
     $("#" + inputID).val(RGBVal);
-    console.log(RGBVal);
 }
+
+function componentToHex(c:number) {
+  var hex = (c.toString(16)).toUpperCase();
+  return hex.length == 1 ? "0" + hex : hex;
+}
+
+function rgbToHex(r:number, g:number, b:number): string{
+    let ans: string = "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+    return ans;
+}
+
+function updateHexVal():void{
+    let r:number= +(<HTMLInputElement>document.getElementById("red_value")).value;
+    let g:number= +(<HTMLInputElement>document.getElementById("green_value")).value;
+    let b:number= +(<HTMLInputElement>document.getElementById("blue_value")).value;
+    let hex_val: string = rgbToHex(r, g, b);
+    $(".HEXInput").val(hex_val);
+    // update the preview and background 
+    updatePreview(hex_val);
+}
+
+function updatePreview(hex: string ): void {
+    $(".preview").css("background-color", hex);
+    $("body").css("background-color", hex);
+}
+
 var redThumb:any = document.getElementById("redThumb")
 
 redThumb.onmousedown = function(event:any) { 
@@ -41,6 +66,7 @@ redThumb.onmousedown = function(event:any) {
       redThumb.style.left = pageX - shiftX + 'px';
       redThumb.style.top = yCor + 'px';
       updateSliderVal("red_value", pageX, thumbLeftBound, thumbRightBound)// update the pcolor value 
+      updateHexVal();
 
     }
     function onMouseMove(event:any) {
@@ -87,7 +113,7 @@ greenThumb.onmousedown = function(event:any) {
       greenThumb.style.left = pageX - shiftX + 'px';
       greenThumb.style.top = yCor + 'px';
       updateSliderVal("green_value", pageX, thumbLeftBound, thumbRightBound)// update the pcolor value 
-
+      updateHexVal();
     }
     function onMouseMove(event:any) {
       moveAt(event.pageX, sliderY);
@@ -100,10 +126,7 @@ greenThumb.onmousedown = function(event:any) {
       greenThumb.onmouseup = null;
     };
   };
-
-greenThumb.ondragstart = function() : boolean{
-    return false;
-};
+ 
 
 var blueThumb:any = document.getElementById("blueThumb")
 
@@ -133,7 +156,7 @@ blueThumb.onmousedown = function(event:any) {
       blueThumb.style.left = pageX - shiftX + 'px';
       blueThumb.style.top = yCor + 'px';
       updateSliderVal("blue_value", pageX, thumbLeftBound, thumbRightBound)// update the pcolor value 
-
+      updateHexVal();
     }
     function onMouseMove(event:any) {
       moveAt(event.pageX, sliderY);
@@ -156,3 +179,4 @@ let body = document.querySelector("body");
 body!.onselectstart = function() : boolean {
     return false;
 }
+

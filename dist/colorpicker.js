@@ -10,7 +10,27 @@ function updateSliderVal(inputID, thumbXVal, thumbLeftBound, thumbRightBound) {
     // RGB val = 255 * amtFIlled / full amount 
     let RGBVal = Math.round((255 * amountFilled) / fullAmount);
     $("#" + inputID).val(RGBVal);
-    console.log(RGBVal);
+}
+function componentToHex(c) {
+    var hex = (c.toString(16)).toUpperCase();
+    return hex.length == 1 ? "0" + hex : hex;
+}
+function rgbToHex(r, g, b) {
+    let ans = "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+    return ans;
+}
+function updateHexVal() {
+    let r = +document.getElementById("red_value").value;
+    let g = +document.getElementById("green_value").value;
+    let b = +document.getElementById("blue_value").value;
+    let hex_val = rgbToHex(r, g, b);
+    $(".HEXInput").val(hex_val);
+    // update the preview and background 
+    updatePreview(hex_val);
+}
+function updatePreview(hex) {
+    $(".preview").css("background-color", hex);
+    $("body").css("background-color", hex);
 }
 var redThumb = document.getElementById("redThumb");
 redThumb.onmousedown = function (event) {
@@ -39,6 +59,7 @@ redThumb.onmousedown = function (event) {
         redThumb.style.left = pageX - shiftX + 'px';
         redThumb.style.top = yCor + 'px';
         updateSliderVal("red_value", pageX, thumbLeftBound, thumbRightBound); // update the pcolor value 
+        updateHexVal();
     }
     function onMouseMove(event) {
         moveAt(event.pageX, sliderY);
@@ -80,6 +101,7 @@ greenThumb.onmousedown = function (event) {
         greenThumb.style.left = pageX - shiftX + 'px';
         greenThumb.style.top = yCor + 'px';
         updateSliderVal("green_value", pageX, thumbLeftBound, thumbRightBound); // update the pcolor value 
+        updateHexVal();
     }
     function onMouseMove(event) {
         moveAt(event.pageX, sliderY);
@@ -91,9 +113,6 @@ greenThumb.onmousedown = function (event) {
         document.removeEventListener('mousemove', onMouseMove);
         greenThumb.onmouseup = null;
     };
-};
-greenThumb.ondragstart = function () {
-    return false;
 };
 var blueThumb = document.getElementById("blueThumb");
 blueThumb.onmousedown = function (event) {
@@ -121,6 +140,7 @@ blueThumb.onmousedown = function (event) {
         blueThumb.style.left = pageX - shiftX + 'px';
         blueThumb.style.top = yCor + 'px';
         updateSliderVal("blue_value", pageX, thumbLeftBound, thumbRightBound); // update the pcolor value 
+        updateHexVal();
     }
     function onMouseMove(event) {
         moveAt(event.pageX, sliderY);
