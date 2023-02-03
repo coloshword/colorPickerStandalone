@@ -1,0 +1,42 @@
+.centerPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+}
+
+.btnDiv {
+    padding: 20px;
+}
+.netlogoBtn {
+    font-size: 20px;
+    text-align: center;
+    width: 100px;
+    cursor: pointer;
+}
+
+.sliderTrack {
+    background-color: white;
+    width: 200px;
+    height: 20px;
+    border-radius: 20px;
+}
+
+.sliderThumb {
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    background-color: beige;
+}
+
+.dropDownMenu {
+    display:flex;
+    border:solid black;
+    padding: 30px;
+    visibility: hidden;
+}
+
+body {
+    background-color: #DBF9FC;
+}
