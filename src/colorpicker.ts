@@ -12,7 +12,7 @@ function updateSliderVal(inputID:string, thumbXVal:number, thumbLeftBound:number
     $("#" + inputID).val(RGBVal);
     console.log(RGBVal);
 }
-var redThumb:any = document.getElementById("text")
+var redThumb:any = document.getElementById("redThumb")
 
 redThumb.onmousedown = function(event:any) { 
     // Slider range constraints 
@@ -59,6 +59,8 @@ redThumb.ondragstart = function() : boolean{
     return false;
 };
 
-redThumb.onselectstart = function() : boolean {
+// SETUP
+let body = document.querySelector("body");
+body!.onselectstart = function() : boolean {
     return false;
 }

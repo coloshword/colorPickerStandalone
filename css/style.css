@@ -16,9 +16,14 @@
     cursor: pointer;
 }
 
+.sliders {
+    padding-top:10px;
+    display:flex;
+    flex-direction: column;
+}
 .sliderBox {
     padding-right: 30px;
-    padding-top: 10px;
+    padding-bottom: 20px;
 }
 
 .sliderTrack {
@@ -42,7 +47,7 @@
     visibility: hidden;
 }
 
-.inputBox {
+.inputBoxes {
     width: 50px;
     height:60px;
     padding-top: 6px;
