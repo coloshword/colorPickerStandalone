@@ -47,11 +47,13 @@
     visibility: hidden;
 }
 
-.inputBoxes {
-    width: 50px;
-    height:60px;
+.inputs {
     padding-top: 6px;
     display: flex;
+    flex-direction: column;
+}
+.inputBoxes {
+    padding-bottom: 14px;
 }
 
 .rgbInput {
